@@ -7,6 +7,18 @@
 var UI = require('ui');
 var Vector2 = require('vector2');
 
+// Download data
+var URL = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk';
+
+ajax({url: URL, type: 'json'},
+  function(json) {
+    console.log(json);
+
+  },
+  function(error) {
+    console.log('Ajax failed: ' + error);
+  }
+);
 var main = new UI.Card({
   title: 'Pebble.js',
   icon: 'images/menu_icon.png',
