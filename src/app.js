@@ -9,18 +9,32 @@ var Vector2 = require('vector2');
 var ajax = require('ajax');
 
 // Download data
-var URL = 'http://api.wunderground.com/api/544c922a1759523c/conditions/q/CA/San_Francisco.json';
-
-ajax({url: URL, type: 'json'},
-  function(json) {
-    console.log(JSON.stringify(json));
-    
+var conditionURL = 'http://api.wunderground.com/api/544c922a1759523c/conditions/q/CA/San_Francisco.json';
+var forecastURL = 'http://api.wunderground.com/api/544c922a1759523c/forecast/q/CA/San_Francisco.json';
+ajax({url: conditionURL, type: 'json'},
+  function(response) {
+  var currentObservation = response.current_observation;
+  var locationName = currentObservation.display_location.full;
+  var currentTemperature = currentObservation.temp_f;
+  console.log(locationName);
+  console.log(currentTemperature);
 
   },
   function(error) {
     console.log('Ajax failed: ' + error);
   }
 );
+
+ajax({url: forecastURL, type: 'json'},
+  function(response) {
+  console.log(JSON.stringify(response));
+
+  },
+  function(error) {
+    console.log('Ajax failed: ' + error);
+  }
+);
+
 var main = new UI.Card({
   title: 'Pebble.js',
   icon: 'images/menu_icon.png',
@@ -28,7 +42,6 @@ var main = new UI.Card({
   body: 'Press any button.'
 });
 
-main.show();
 
 main.on('click', 'up', function(e) {
   var menu = new UI.Menu({
