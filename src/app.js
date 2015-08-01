@@ -18,7 +18,6 @@ ajax({url: conditionURL, type: 'json'},
   var currentTemperature = currentObservation.temp_f;
   console.log(locationName);
   console.log(currentTemperature);
-
   },
   function(error) {
     console.log('Ajax failed: ' + error);
@@ -28,7 +27,21 @@ ajax({url: conditionURL, type: 'json'},
 ajax({url: forecastURL, type: 'json'},
   function(response) {
   console.log(JSON.stringify(response));
-
+  var firstDayForecast = response.forecast.simpleforecast.forecastday[1];
+  var secondDayForecast = response.forecast.simpleforecast.forecastday[2];
+  var thirdDayForecast = response.forecast.simpleforecast.forecastday[3];
+  var firstDay = firstDayForecast.date.weekday_short;
+  var secondDay = secondDayForecast.date.weekday_short;
+  var thirdDay = thirdDayForecast.date.weekday_short;
+  var firstDayHigh = firstDayForecast.high.fahrenheit;
+  var secondDayHigh = secondDayForecast.high.fahrenheit;
+  var thirdDayHigh = thirdDayForecast.high.fahrenheit;
+  var firstDayLow = firstDayForecast.low.fahrenheit;
+  var secondDayLow = secondDayForecast.low.fahrenheit;
+  var thirdDayLow = thirdDayForecast.low.fahrenheit;
+  var firstDayConditions = firstDayForecast.conditions;
+  var secondDayConditions = secondDayForecast.conditions;
+  var thirdDayConditions = thirdDayForecast.conditions;
   },
   function(error) {
     console.log('Ajax failed: ' + error);
