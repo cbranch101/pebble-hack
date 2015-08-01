@@ -9,7 +9,7 @@ var Vector2 = require('vector2');
 var ajax = require('ajax');
 
 // Download data
-var URL = 'http://api.wunderground.com/api/Your_Key/conditions/q/CA/San_Francisco.json';
+var URL = 'http://api.wunderground.com/api/544c922a1759523c/conditions/q/CA/San_Francisco.json';
 
 ajax({url: URL, type: 'json'},
   function(json) {
