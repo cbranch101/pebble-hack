@@ -6,13 +6,15 @@
 
 var UI = require('ui');
 var Vector2 = require('vector2');
+var ajax = require('ajax');
 
 // Download data
-var URL = 'http://api.openweathermap.org/data/2.5/weather?q=London,uk';
+var URL = 'http://api.openweathermap.org/data/2.5/weather?q=80013,us';
 
 ajax({url: URL, type: 'json'},
   function(json) {
-    console.log(json);
+    console.log(JSON.stringify(json));
+    
 
   },
   function(error) {
